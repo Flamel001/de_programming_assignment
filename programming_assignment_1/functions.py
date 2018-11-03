@@ -37,4 +37,61 @@ def k4(x, y, h):
     return f(x + h, y + h * k3(x, y, h))
 
 
+def euler(steps_amount):
+    # Initial values
+    x = [1.0]
+    y = [0.0]
+    # step size
+    h = (5 - x[0]) / steps_amount
+
+    for i in range(steps_amount):
+        # here graph is created point by point
+        x.append(x[i] + h)
+        y.append(y[i] + h * (f(x[i], y[i])))
+
+    return x,y
+
+
+def exact(steps_amount):
+    # Initial values
+    x = [1.0]
+    y = []
+    # step size
+    h = (5 - x[0]) / steps_amount
+
+    for i in range(steps_amount):
+        # here graph is created point by point
+        x.append(x[i] + h)
+        y.append(f_exact(x[i]))
+    y.append(f_exact(x[-1]))
+    return x, y
+
+
+def runge_kutta(steps_amount):
+    # Initial values
+    x = [1.0]
+    y = [0.0]
+    # step size
+    h = (5 - x[0]) / steps_amount
+    for i in range(steps_amount):
+        # here graph is created point by point
+        x.append(x[i]+h)
+        y.append(y[i] + runge_kutta_delta_y(x[i],y[i],h))
+    return x,y
+
+
+def euler_improved(steps_amount):
+    # Initial values
+    x = [1.0]
+    y = [0.0]
+    # step size
+    h = (5 - x[0]) / steps_amount
+
+    for i in range(steps_amount):
+        # here graph is created point by point
+        x.append(x[i]+h)
+        y.append(y[i] + delta_y(x[i],y[i],h))
+    return x,y
+
+
 
