@@ -1,17 +1,19 @@
-#3𝑥𝑒^𝑥−𝑦(1−1/𝑥)
-import matplotlib.pyplot as plt
-from assignment.functions import *
+# 3𝑥𝑒^𝑥−𝑦(1−1/𝑥)
+from functions import *
 
-for i in range(X):
-    #here graph for 'method_name' is created point by point
-    y.append(y[i] + h*(f(x[i],y[i])))
-    #here exact graph for comparison is created
-    y_exact.append(f_exact(x[i]))
-    x.append(x[i]+h)
-    #here is graph for errors
-    errors.append(math.fabs(y_exact[i+1] - y[i]))
-#here graph is plotted
-plt.plot(x, y)
-plt.plot(x, y_exact)
-plt.plot(x, errors)
-plt.show()
+
+def euler(steps_amount):
+    # Initial values
+    x = [1.0]
+    y = [0.0]
+    # step size
+    h = (5 - x[0]) / steps_amount
+
+    for i in range(steps_amount):
+        # here graph is created point by point
+        y.append(y[i] + h * (f(x[i], y[i])))
+        x.append(x[i] + h)
+
+    return x,y
+
+

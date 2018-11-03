@@ -1,13 +1,15 @@
-import matplotlib.pyplot as plt
-from assignment.functions import *
+from functions import *
 
-for i in range(X):
-    y.append(y[i] + delta_y(x[i],y[i]))
-    y_exact.append(f_exact(x[i]))
-    x.append(x[i]+h)
-    errors.append(math.fabs(y_exact[i+1] - y[i]))
 
-plt.plot(x, y)
-plt.plot(x, y_exact)
-plt.plot(x, errors)
-plt.show()
+def euler_improved(steps_amount):
+    # Initial values
+    x = [1.0]
+    y = [0.0]
+    # step size
+    h = (5 - x[0]) / steps_amount
+
+    for i in range(steps_amount):
+        # here graph is created point by point
+        y.append(y[i] + delta_y(x[i],y[i],h))
+        x.append(x[i]+h)
+    return x,y
